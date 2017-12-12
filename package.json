@@ -1,0 +1,28 @@
+{
+  "name": "gsg-library",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon backend-src/server.js",
+    "watch": "node Database/build.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/facg3/GSG-Library.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/facg3/GSG-Library/issues"
+  },
+  "homepage": "https://github.com/facg3/GSG-Library#readme",
+  "dependencies": {
+    "env2": "^2.2.0",
+    "pg": "^7.4.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.5"
+  }
+}
