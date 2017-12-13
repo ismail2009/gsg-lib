@@ -1,25 +1,10 @@
-// const staticHero = require('./static');
-// const getData = require('./dynmic');
-// module.exports = (req,res)=>{
-//   const endpoint  = req.url.split('/')[1];
-//   if (endpoint === 'static') {
-//   const staticData = JSON.stringify(staticHero);
-//   res.writeHead(200,{'Content-type':'application/json'});
-//   res.end(staticData);
-//   }
-//   else if(endpoint === 'dynmic'){
-//     getData((err,data)=>{
-//       if(err) console.log(err);
-//       const dynmicData = JSON.stringify(data);
-//       res.writeHead(200,{'Content-type':'application/json'});
-//       res.end(dynmicData);
-//     })
-//   }
-// };
 const fs = require('fs');
 const path = require('path');
 const insert = require('./query/insert');
 const showData = require('./query/selectAll');
+const deleteBook = require('./query/deleteBook');
+const editBook = require('./query/update');
+
 const homepageHandler = (req, res) => {
   fs.readFile(path.join(__dirname, '..', 'public', 'index.html'), (err, file) => {
     if (err) {
@@ -72,34 +57,85 @@ const insertData = (req, res) => {
 
     insert(convertData.title, convertData.author, convertData.edition, convertData.publisher, (err, response) => {
       if (err) {
-        res.writeHead(500, {'content-Type': 'text/html'});
+        res.writeHead(500, {
+          'content-Type': 'text/html'
+        });
         return res.end("<h1>ERROR handling</h1>");
       }
-      res.writeHead(200, {'Content-Type':' text/html'});
+      res.writeHead(200, {
+        'Content-Type': ' text/html'
+      });
       return res.end();
     });
 
 
   });
-  }
-  const viewData = (req, res) => {
-     showData((err,response)=>{
-       if (err) {
-         res.writeHead(500, {'Content-Type': 'text/html'});
-         return res.end("<h1>ERROR handling</h1>");
-       }
-       var data = JSON.stringify(response);
-       res.writeHead(200,{ 'Content-Type': 'application/json'});
-       return res.end(data);
-     });
+}
+const viewData = (req, res) => {
+  showData((err, response) => {
+    if (err) {
+      res.writeHead(500, {
+        'Content-Type': 'text/html'
+      });
+      return res.end("<h1>ERROR handling</h1>");
+    }
+    var data = JSON.stringify(response);
+    res.writeHead(200, {
+      'Content-Type': 'application/json'
+    });
+    return res.end(data);
+  });
 
-  }
+}
+const deleteData = (req, res) => {
+  var idBook = '';
+  req.on('data', function(chunkOfData) {
+    idBook += chunkOfData;
+  });
+  req.on('end', function() {
+    // const convertData = JSON.parse(allData);
 
-
+    deleteBook(idBook, (err, response) => {
+      if (err) {
+        res.writeHead(500, {
+          'content-Type': 'text/html'
+        });
+        return res.end("<h1>ERROR handling</h1>");
+      }
+      res.writeHead(200, {
+        'Content-Type': ' text/html'
+      });
+      return res.end();
+    });
+  });
+}
+const editData = (req, res) => {
+  var Book = '';
+  req.on('data', function(chunkOfData) {
+    Book += chunkOfData;
+  });
+  req.on('end', function() {
+    const book = JSON.parse(book);
+    editBook(book.title, book.author, book.edition, book.publisher, book.id, (err, response) => {
+      if (err) {
+        res.writeHead(500, {
+          'content-Type': 'text/html'
+        });
+        return res.end("<h1>ERROR handling</h1>");
+      }
+      res.writeHead(200, {
+        'Content-Type': ' text/html'
+      });
+      return res.end();
+    });
+  });
+}
 
 module.exports = {
   publicHandler,
   homepageHandler,
   insertData,
-  viewData
+  viewData,
+  deleteData,
+  editData
 }
