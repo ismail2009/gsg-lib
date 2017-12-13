@@ -11,34 +11,47 @@
   <section class="container">
 
     <div id="menu">
-      <ul>
+
+      <ul class="listItem">
         <li><a href="#" id="addBook">Add Books</a></li>
         <li><a href="#" id="allBook">All Books</a></li>
 
       </ul>
     </div>
     <div id="add" class="bookData">
-      <form class="" action="index.html" method="post">
-        <label for="">
-          Book title : <input type="text" name=""  id="Btitle">
-        </label><br>
-        <label for="">
-          Book author : <input type="text" name=""  id="Bauthor">
-        </label><br>
-        <label for="">
-          Edition : <input type="text" name=""  id="Bedition">
-        </label><br>
-        <label for="">
-          Publisher : <input type="text" name=""  id="Bpublisher">
-        </label><br>
+
+      <form action="index.html" method="post">
+        <div>
+          <label for="Btitle">
+            Book title:
+          </label>
+          <input type="text" name="Book title" id="Btitle">
+        </div>
+        <div>
+          <label for="Bauthor">
+            Book author : </label>
+          <input type="text" name="Book author" id="Bauthor">
+        </div>
+        <div>
+          <label for="Bedition">
+            Edition : </label>
+          <input type="text" name="Edition" id="Bedition">
+        </div>
+        <div>
+          <label for="Bpublisher">
+            Publisher :   </label>
+          <input type="text" name="Publisher" id="Bpublisher">
+
+        </div>
         <!-- <label for="">
           Cover : <input type="file" name="" value="" id="Bcover">
         </label><br> -->
-        <button type="button" name="button" id="create">Create</button>
+        <button type="button" name="button" id="create" class="createButton">Create</button>
       </form>
     </div>
     <div>
-      <table id="table" class="booklist">
+      <div>
+<table id="table" class="booklist">
         <tr>
           <th>Title</th>
           <th>Auther</th>
@@ -47,6 +60,8 @@
           <th>Option</th>
         </tr>
       </table>
+      </div>
+
     </div>
   </section>
 
