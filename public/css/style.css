@@ -1,3 +1,45 @@
+*{
+  margin: 0 ;
+}
 body{
-  background-color: red;
+  margin: 0 auto;
+  width: 100%;
+}
+.container{
+  display: flex;
+}
+.container menu{
+  display: flex;
+  justify-content: flex-start;
+}
+.container .bookData{
+  display: flex;
+  justify-content:space-between;
+}
+
+#menu{
+  display: flex;
+  background-color: #777;
+  width: 20%;
+  position: static;
+  height: 100vh;
+
+}
+ul{
+  display: flex;
+  flex-wrap: nowrap;
+}
+ul li{
+  display: flex;
+  align-self: center;
+}
+#add{
+  display: flex;
+  justify-content: space-around;
+}
+.bookData{
+  display:none;
+}
+.booklist{
+  display: none;
 }
