@@ -13,7 +13,11 @@ const router = (request, response) => {
   }
   else if (url === '/viewData') {
     handlers.viewData(request, response);
-  }  else {
+  }  else if (url === '/deleteData') {
+      handlers.deleteData(request, response);
+    }else if (url === '/editData') {
+        handlers.editData(request, response);
+      }  else {
     response.writeHead(404);
     response.end('PAGE NOT FOUND!!!!!!!!!!');
   }

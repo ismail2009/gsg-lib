@@ -16,7 +16,10 @@ body{
   display: flex;
   justify-content:space-between;
 }
-
+.booklist{
+  display: flex;
+  flex-direction: row;
+}
 #menu{
   display: flex;
   background-color: #777;
@@ -42,4 +45,16 @@ ul li{
 }
 .booklist{
   display: none;
+}
+table, td, th {
+    border: 1px solid black;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th {
+    height: 50px;
 }
