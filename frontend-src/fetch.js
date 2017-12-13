@@ -1,11 +1,11 @@
-const fetch = (url,val,cb) =>{
+const fetchPost = (method,url,cb,val) =>{
 const xhr = new XMLHttpRequest();
 xhr.onreadystatechange = function (){
   console.log(xhr.readyState,xhr.status);
   if (xhr.readyState === 4 && xhr.status === 200) {
-    cb(xhr.responseText);
+    cb(null,xhr.responseText);
   }
 }
-xhr.open('POST',url,true);
+xhr.open(method,url,true);
 xhr.send(val);
 }

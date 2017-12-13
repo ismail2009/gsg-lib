@@ -18,20 +18,28 @@
 // };
 const fs = require('fs');
 const path = require('path');
+const insert = require('./query/insert');
+const showData = require('./query/selectAll');
 const homepageHandler = (req, res) => {
   fs.readFile(path.join(__dirname, '..', 'public', 'index.html'), (err, file) => {
     if (err) {
-      res.writeHead(500, { 'content-type': 'text/html' });
+      res.writeHead(500, {
+        'content-type': 'text/html'
+      });
       res.end('<h1>SERVER ERROR</h1>');
     } else {
-      res.writeHead(200, { 'content-type': 'text/html' });
+      res.writeHead(200, {
+        'content-type': 'text/html'
+      });
       res.end(file);
     }
   });
 };
 
 const publicHandler = (req, res) => {
-  const { url } = req;
+  const {
+    url
+  } = req;
   const extension = url.split('.')[1];
   const filetype = {
     html: 'text/html',
@@ -43,7 +51,9 @@ const publicHandler = (req, res) => {
 
   fs.readFile(path.join(__dirname, '..', url), (err, file) => {
     if (err) {
-      res.writeHead(500, { 'content-type': 'text/html' });
+      res.writeHead(500, {
+        'content-type': 'text/html'
+      });
       res.end('<h1>SERVER ERROR</h1>');
     } else {
       res.writeHead(200, `Content-Type:${filetype[extension]}`);
@@ -52,22 +62,44 @@ const publicHandler = (req, res) => {
   });
 
 };
-const getdata = (req, res) => {
+const insertData = (req, res) => {
   var allData = '';
   req.on('data', function(chunkOfData) {
-     allData += chunkOfData;
+    allData += chunkOfData;
   });
   req.on('end', function() {
-    console.log("allData vallDataallData",JSON.parse(allData));
-    res.writeHead(200, 'content-Type: text/html');
-    res.end(allData);
+    const convertData = JSON.parse(allData);
+
+    insert(convertData.title, convertData.author, convertData.edition, convertData.publisher, (err, response) => {
+      if (err) {
+        res.writeHead(500, {'content-Type': 'text/html'});
+        return res.end("<h1>ERROR handling</h1>");
+      }
+      res.writeHead(200, {'Content-Type':' text/html'});
+      return res.end();
+    });
+
 
   });
-    }
+  }
+  const viewData = (req, res) => {
+     showData((err,response)=>{
+       if (err) {
+         res.writeHead(500, {'Content-Type': 'text/html'});
+         return res.end("<h1>ERROR handling</h1>");
+       }
+       var data = JSON.stringify(response);
+       res.writeHead(200,{ 'Content-Type': 'application/json'});
+       return res.end(data);
+     });
+
+  }
+
 
 
 module.exports = {
   publicHandler,
   homepageHandler,
-getdata
+  insertData,
+  viewData
 }
