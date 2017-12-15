@@ -115,18 +115,19 @@ const editData = (req, res) => {
     Book += chunkOfData;
   });
   req.on('end', function() {
-    const book = JSON.parse(book);
-    editBook(book.title, book.author, book.edition, book.publisher, book.id, (err, response) => {
+    const convertData = JSON.parse(Book);
+    editBook(convertData.title,convertData.author, convertData.edtion,
+       convertData.publisher, convertData.id, (err, response) => {
       if (err) {
         res.writeHead(500, {
           'content-Type': 'text/html'
         });
-        return res.end("<h1>ERROR handling</h1>");
+         res.end("<h1>ERROR handling</h1>");
       }
       res.writeHead(200, {
-        'Content-Type': ' text/html'
+        'Content-Type': 'application/json'
       });
-      return res.end();
+      res.end();
     });
   });
 }
