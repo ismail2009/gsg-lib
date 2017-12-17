@@ -163,7 +163,7 @@ function functionAdd(item) {
   });
   editBook.addEventListener("click", function(event) {
     edit.innerHTML = "";
-    edit.style.display="block";
+    edit.style.display = "block";
     functionEdit(item, ptitle, pauthor, pedition, ppublisher);
   });
 }
