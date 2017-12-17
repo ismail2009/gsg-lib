@@ -36,10 +36,28 @@ button.addEventListener('click', () => {
 
 allBook.addEventListener('click', () => {
   add.style.display = 'none';
-  table.style.display = 'none';
+  // table.style.display = 'none';
   fetchPost('GET', '/viewData', (err, res) => {
     if (err) {} else {
       var data = JSON.parse(res);
+      table.innerHTML = "";
+      var tr = document.createElement('tr');
+      table.appendChild(tr);
+      var th1 = document.createElement('th');
+      th1.innerHTML = "Title";
+      table.appendChild(th1);
+      var th2 = document.createElement('th');
+      th2.innerHTML = "Author";
+      table.appendChild(th2);
+      var th3 = document.createElement('th');
+      th3.innerHTML = "Edition";
+      table.appendChild(th3);
+      var th4 = document.createElement('th');
+      th4.innerHTML = "Publisher";
+      table.appendChild(th4);
+      var th5 = document.createElement('th');
+      th5.innerHTML = "Option";
+      table.appendChild(th5);
       data.forEach((item) => {
         functionAdd(item);
       });
@@ -50,21 +68,19 @@ allBook.addEventListener('click', () => {
 
 function functionDelete(id, tr) {
   var confirmToDelete = confirm("Confirm To Delete Book! ;( ");
-  if(confirmToDelete === true){
+  if (confirmToDelete === true) {
     fetchPost('POST', '/deleteData', (err, res) => {
       if (err) {} else {
         tr.remove();
       }
     }, JSON.stringify(id));
-  }
-  else {
-  }
+  } else {}
 }
 
 function functionEdit(item, ptitle, pauthor, pedition, ppublisher) {
-
+  console.log("insrghjkl");
   var spanTitle = document.createElement("p");
-  spanTitle.innerHTML = "Edit Title";
+  spanTitle.textContent = "Edit Title";
   var inputTitle = document.createElement("INPUT");
   inputTitle.setAttribute("type", "text");
   inputTitle.setAttribute("value", item.title);
@@ -113,11 +129,12 @@ function functionEdit(item, ptitle, pauthor, pedition, ppublisher) {
         edit.style.display = 'none';
       }
     }, convertData);
-    event.preventDefault();
+
   });
 }
 
 function functionAdd(item) {
+
   var tr = document.createElement('tr');
   var ptitle = document.createElement('td');
   ptitle.innerHTML = item.title;
@@ -143,10 +160,10 @@ function functionAdd(item) {
   table.appendChild(tr);
   deleteBook.addEventListener("click", function(event) {
     functionDelete(item.id, tr);
-    event.preventDefault();
   });
   editBook.addEventListener("click", function(event) {
+    edit.innerHTML = "";
+    edit.style.display="block";
     functionEdit(item, ptitle, pauthor, pedition, ppublisher);
-    event.preventDefault();
   });
 }
