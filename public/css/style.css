@@ -1,7 +1,13 @@
 * {
   margin: 0;
-}
 
+}
+html{
+  background-color: #ccc;
+  background: url('http://www.powerpointhintergrund.com/download/book-open-book-pages-parchment-with-book-background-5935');
+  background-size: cover;
+
+}
 body {
   margin: 0 auto;
   width: 100%;
@@ -10,16 +16,14 @@ body {
 .container {
   display: flex;
   justify-content: space-between;
-  background-color: #ccc;
+  /*background-color: #ccc;*/
   height: 100vh;
 }
 
 .container menu {
-  display: flex;
+display: flex;
   justify-content: flex-start;
 }
-
-
 
 #menu {
   display: flex;
@@ -28,6 +32,7 @@ body {
   width: 20%;
   position: static;
   height: 50vh;
+  opacity: 0.7
 }
 
 #menu .listItem {
@@ -55,24 +60,37 @@ body {
   text-decoration: none;
   color: #fff;
 }
+#edit{
+  margin: auto;
+}
+#edit p{
+  font-size: 19px;
+  padding: 15px 0 0 0
+}
+.bookData{
+  display: none;
+}
+.backgroundimg{
+}
 .container .bookData {
-  display: flex;
+  /*display: flex;*/
   justify-content: space-between;
-  display: flex;
   width: 50%;
   background-color: #FF5733;
   align-self: center;
   padding: 15px;
   color: #fff;
   border-radius: 15px;
-  font-size: 18px
+  font-size: 18px;
+  margin: auto;
 }
 
 .bookData form {
-display: flex;
-width: 100%;
-flex-direction: column;
-justify-content: center;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+
 }
 
 .bookData form div {
@@ -80,14 +98,15 @@ justify-content: center;
   display: flex;
   flex-direction: row;
   align-items: flex-end;
-  text-align:left;
+  text-align: left;
   margin-bottom: 5px;
 }
 
-.bookData form div label{
+.bookData form div label {
   width: 50%;
 }
-.bookData form div input{
+
+.bookData form div input {
   width: 50%;
   border-radius: 2px;
   border: none;
@@ -95,23 +114,45 @@ justify-content: center;
   font-size: 18px;
   outline: none;
 }
+
 .booklist {
   display: none;
 }
-table, td, th {
-    border: 1px solid black;
+
+td, th {
+  border: 1px solid black;
+  padding: 20px;
+  color: #fff;
+  font-size: 18px;
+
+}
+th {
+  background-color: #FF5733;
+}
+td{
+  background-color: #FF5733;
+  opacity: .7
 }
 
 table {
-    border-collapse: collapse;
-    width: 100%;
+  border-collapse: collapse;
+  /*width: 100%;*/
+  margin: auto;
 }
 
 th {
-    height: 50px;
+  height: 50px;
 }
-
-
+button{
+  background-color: #3AF20D;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 15px;
+  cursor: pointer;
+  padding: 10px;
+  margin-left: 2px
+}
 .createButton {
   justify-content: center;
   width: 100%;
@@ -122,4 +163,5 @@ th {
   border: none;
   border-radius: 5px;
   font-size: 15px;
+  cursor: pointer;
 }
